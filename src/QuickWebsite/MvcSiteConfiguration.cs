@@ -24,6 +24,7 @@ public sealed class MvcSiteConfiguration : IMVCSiteConfiguration
         RewriteUrlsToForceTrailingSlash = toCopyFrom.RewriteUrlsToForceTrailingSlash;
         _exceptionHandler = toCopyFrom.ExceptionHandler;
         _defaultControllerRoutePattern = toCopyFrom.DefaultControllerRoutePattern;
+        SessionTimeout = toCopyFrom.SessionTimeout;
     }
 
     public bool UseForwardedHeaders { get; set; }
@@ -49,4 +50,6 @@ public sealed class MvcSiteConfiguration : IMVCSiteConfiguration
             _defaultControllerRoutePattern = value ?? throw new ArgumentNullException(nameof(value));
         }
     }
+
+    public TimeSpan? SessionTimeout { get; set; }
 }

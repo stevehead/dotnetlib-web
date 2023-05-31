@@ -54,7 +54,21 @@ public sealed class MVCSite
     {
         var builder = WebApplication.CreateBuilder(_args);
 
+        TimeSpan? sessionTimeout = _configuration.SessionTimeout;
+
         // Add services to the container.
+        if (sessionTimeout.HasValue)
+        {
+            builder.Services.AddDistributedMemoryCache();
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = sessionTimeout.Value;
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+        }
+
         builder.Services.AddControllersWithViews();
 
         var app = builder.Build();
@@ -89,6 +103,11 @@ public sealed class MVCSite
         }
 
         app.UseRouting();
+
+        if (sessionTimeout.HasValue)
+        {
+            app.UseSession();
+        }
 
         app.MapControllerRoute(name: "default", pattern: _configuration.DefaultControllerRoutePattern);
 

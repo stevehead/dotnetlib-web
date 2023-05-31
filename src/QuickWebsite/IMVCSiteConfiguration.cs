@@ -1,4 +1,6 @@
-﻿namespace Stevehead.Web.QuickWebsite;
+﻿using System;
+
+namespace Stevehead.Web.QuickWebsite;
 
 /// <summary>
 /// Configuration for quick MVC websites.
@@ -24,4 +26,9 @@ public interface IMVCSiteConfiguration
     /// The controller route pattern for the default map.
     /// </summary>
     string DefaultControllerRoutePattern { get; }
+
+    /// <summary>
+    /// The length of time a session is allowed to idle. If set to <c>null</c>, sessions are disabled.
+    /// </summary>
+    TimeSpan? SessionTimeout { get; }
 }

@@ -1,4 +1,6 @@
-﻿namespace Stevehead.Web.QuickWebsite;
+﻿using System;
+
+namespace Stevehead.Web.QuickWebsite;
 
 // Internal default configuration.
 internal sealed class DefaultMVCSiteConfiguration : IMVCSiteConfiguration
@@ -14,4 +16,6 @@ internal sealed class DefaultMVCSiteConfiguration : IMVCSiteConfiguration
     public bool RewriteUrlsToForceTrailingSlash => true;
 
     public string DefaultControllerRoutePattern => "{controller=Public}/{action=Index}/{id?}";
+
+    public TimeSpan? SessionTimeout => null;
 }
