@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Builder;
+using System;
 
 namespace Stevehead.Web.QuickWebsite;
 
@@ -25,6 +26,7 @@ public sealed class MvcSiteConfiguration : IMVCSiteConfiguration
         _exceptionHandler = toCopyFrom.ExceptionHandler;
         _defaultControllerRoutePattern = toCopyFrom.DefaultControllerRoutePattern;
         SessionTimeout = toCopyFrom.SessionTimeout;
+        BuilderCallback = toCopyFrom.BuilderCallback;
     }
 
     public bool UseForwardedHeaders { get; set; }
@@ -52,4 +54,6 @@ public sealed class MvcSiteConfiguration : IMVCSiteConfiguration
     }
 
     public TimeSpan? SessionTimeout { get; set; }
+
+    public Action<WebApplicationBuilder>? BuilderCallback { get; set; }
 }

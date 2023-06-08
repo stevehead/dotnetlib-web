@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Builder;
+using System;
 
 namespace Stevehead.Web.QuickWebsite;
 
@@ -18,4 +19,6 @@ internal sealed class DefaultMVCSiteConfiguration : IMVCSiteConfiguration
     public string DefaultControllerRoutePattern => "{controller=Public}/{action=Index}/{id?}";
 
     public TimeSpan? SessionTimeout => null;
+
+    public Action<WebApplicationBuilder>? BuilderCallback => null;
 }

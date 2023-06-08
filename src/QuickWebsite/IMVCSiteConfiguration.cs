@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Builder;
+using System;
 
 namespace Stevehead.Web.QuickWebsite;
 
@@ -31,4 +32,9 @@ public interface IMVCSiteConfiguration
     /// The length of time a session is allowed to idle. If set to <c>null</c>, sessions are disabled.
     /// </summary>
     TimeSpan? SessionTimeout { get; }
+
+    /// <summary>
+    /// The callback for the <see cref="WebApplicationBuilder"/>.
+    /// </summary>
+    Action<WebApplicationBuilder>? BuilderCallback { get; }
 }

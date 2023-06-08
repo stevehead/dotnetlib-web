@@ -71,6 +71,9 @@ public sealed class MVCSite
 
         builder.Services.AddControllersWithViews();
 
+        // Callback
+        _configuration.BuilderCallback?.Invoke(builder);
+
         var app = builder.Build();
 
         if (_configuration.UseForwardedHeaders)
