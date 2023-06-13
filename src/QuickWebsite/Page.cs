@@ -32,6 +32,9 @@ public class Page : IPage
     [JsonPropertyName("is-hidden")]
     public bool IsHidden { get; set; } = false;
 
+    [JsonPropertyName("is-home")]
+    public bool IsHome { get; set; } = false;
+
     [JsonPropertyName("components")]
     public IReadOnlyDictionary<string, string>? Components { get; set; }
 
@@ -50,6 +53,9 @@ public class Page : IPage
             _children = value;
         }
     }
+
+    [JsonPropertyName("last-modified")]
+    public string? LastModified { get; set; }
     #endregion
 
     public string this[string? componentName]
@@ -129,4 +135,19 @@ public class Page : IPage
     IPage? IPage.Parent => Parent;
 
     IReadOnlyList<IPage> IPage.Children => _children;
+
+    DateOnly? IPage.LastModified
+    {
+        get
+        {
+            string? lastModified = LastModified;
+
+            if (!string.IsNullOrEmpty(lastModified) && DateOnly.TryParseExact(lastModified, "yyyy-MM-dd", out DateOnly result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+    }
 }

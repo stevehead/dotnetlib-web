@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Stevehead.Web.QuickWebsite;
 
@@ -31,6 +32,11 @@ public interface IPage
     bool IsHidden { get; }
 
     /// <summary>
+    /// Determines if this page is the home page.
+    /// </summary>
+    bool IsHome { get; }
+
+    /// <summary>
     /// The parent page.
     /// </summary>
     IPage? Parent { get; }
@@ -54,6 +60,11 @@ public interface IPage
     /// The full url of the page.
     /// </summary>
     string Url { get; }
+
+    /// <summary>
+    /// The date the page was last modified.
+    /// </summary>
+    DateOnly? LastModified { get; }
 
     /// <summary>
     /// Determines if the provided URL matches this page's url.
